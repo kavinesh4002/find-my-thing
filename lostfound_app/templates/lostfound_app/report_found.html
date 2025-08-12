@@ -1,0 +1,165 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Report Found Item</title>
+
+<style>
+    /* Reset basics */
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(120deg, #f5f7fa, #e3e7ec);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 40px 20px;
+        color: #1e293b;
+    }
+
+    /* Card container */
+    .container {
+        background: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+        padding: 30px 28px;
+        max-width: 500px;
+        width: 100%;
+    }
+
+    /* Page title */
+    h2 {
+        text-align: center;
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-bottom: 24px;
+        color: #334155;
+    }
+
+    /* Form styling */
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    label {
+        font-weight: 600;
+        font-size: 0.95rem;
+        color: #475569;
+        margin-bottom: 4px;
+    }
+
+    input[type="text"],
+    textarea {
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 10px;
+        border: 1.5px solid #cbd5e1;
+        background: #f8fafc;
+        font-size: 0.95rem;
+        color: #334155;
+        resize: vertical;
+        transition: border-color 0.25s, background-color 0.25s;
+    }
+
+    input[type="text"]:focus,
+    textarea:focus {
+        border-color: #2563eb;
+        background: #ffffff;
+        outline: none;
+    }
+
+    /* Submit button */
+    button {
+        padding: 14px;
+        border: none;
+        border-radius: 12px;
+        background: #2563eb;
+        color: #fff;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(37,99,235,0.3);
+        transition: background 0.3s, box-shadow 0.3s;
+    }
+
+    button:hover {
+        background: #1e40af;
+        box-shadow: 0 6px 18px rgba(37,99,235,0.45);
+    }
+
+    /* Back link */
+    a.back-link {
+        display: block;
+        text-align: center;
+        margin-top: 18px;
+        padding: 10px;
+        background: #e2e8f0;
+        color: #475569;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: background 0.2s, color 0.2s;
+    }
+
+    a.back-link:hover {
+        background: #cbd5e1;
+        color: #334155;
+    }
+
+    /* Responsive */
+    @media (max-width: 500px) {
+        .container {
+            padding: 20px 15px;
+        }
+        h2 {
+            font-size: 1.2rem;
+        }
+    }
+</style>
+
+<link rel="stylesheet" href="{% static 'lostfound_app/style.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <h2>Report Found Item</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        <div>
+            <label>Item Name:</label>
+            <input type="text" name="item_name" required>
+        </div>
+
+        <div>
+            <label>Description:</label>
+            <textarea name="description" rows="3" required></textarea>
+        </div>
+
+        <div>
+            <label>Location:</label>
+            <input type="text" name="location" required>
+        </div>
+
+        <div>
+            <label>Contact Number:</label>
+            <input type="text" name="contact_number" required>
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <a href="{% url 'home' %}" class="back-link">Back to Home</a>
+</div>
+
+</body>
+</html>

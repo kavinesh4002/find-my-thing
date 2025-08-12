@@ -1,0 +1,137 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Matches</title>
+
+<style>
+    /* Base reset */
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(120deg, #f5f7fa, #e3e7ec);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 40px 20px;
+        color: #1e293b;
+    }
+
+    /* Main content card */
+    .container {
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+        padding: 30px 28px;
+        max-width: 650px;
+        width: 100%;
+    }
+
+    h3 {
+        text-align: center;
+        font-size: 1.3rem;
+        margin-bottom: 25px;
+        font-weight: 600;
+        color: #334155;
+    }
+
+    /* Matches list */
+    ul {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 20px;
+    }
+
+    li {
+        background: #f8fafc;
+        padding: 15px 18px;
+        margin-bottom: 12px;
+        border-radius: 10px;
+        border: 1px solid #e2e8f0;
+        font-size: 0.95rem;
+        line-height: 1.4;
+        color: #475569;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    li:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    /* Back link */
+    a.back-link {
+        display: inline-block;
+        text-align: center;
+        padding: 12px 20px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        border-radius: 8px;
+        background: #e2e8f0;
+        color: #334155;
+        text-decoration: none;
+        transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    a.back-link:hover {
+        background: #cbd5e1;
+        color: #1e293b;
+    }
+
+    /* Empty state */
+    p {
+        text-align: center;
+        font-size: 0.95rem;
+        color: #64748b;
+        margin-bottom: 25px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 500px) {
+        .container {
+            padding: 20px 15px;
+        }
+        h3 {
+            font-size: 1.1rem;
+        }
+        li {
+            font-size: 0.9rem;
+        }
+    }
+</style>
+
+<link rel="stylesheet" href="{% static 'lostfound_app/style.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <h3>Matches for your reported {{ item_type }} item "{{ item_name }}":</h3>
+
+        {% if matches %}
+            <ul>
+            {% for item in matches %}
+                <li>
+                    <strong>{{ item.item_name }}</strong> — {{ item.description }}
+                    <br>📍 Location: {{ item.location }}
+                    📞 Contact: {{ item.contact_number }}
+                    <br>🗓 Reported on {{ item.date_reported }}
+                </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No matching items found yet.</p>
+        {% endif %}
+
+        <div style="text-align:center">
+            <a href="{% url 'home' %}" class="back-link">Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>

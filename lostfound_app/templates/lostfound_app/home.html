@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FindMyThing - Lost and Found</title>
+  <style>
+    body {
+      background: linear-gradient(120deg, #f5f7fa 0%, #e0e7ef 100%);
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', 'Poppins', Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .center-box {
+      background: #ffffff;
+      border-radius: 18px;
+      box-shadow: 0 6px 24px rgba(40, 54, 70, 0.08);
+      padding: 38px 32px;
+      width: 330px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .web-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #1e293b;
+      letter-spacing: 0.04em;
+      text-align: center;
+    }
+
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      width: 100%;
+    }
+
+    a {
+      text-decoration: none;
+      width: 100%;
+    }
+
+    .lost-btn, .found-btn {
+      width: 100%;
+      padding: 14px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(40, 54, 70, 0.08);
+      transition: background 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+      color: #253659;
+    }
+
+    .lost-btn {
+      background: #f1f5f9;
+    }
+    .lost-btn:hover {
+      background: #e2e8f0;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+      color: #384968;
+    }
+
+    .found-btn {
+      background: #e5e7eb;
+    }
+    .found-btn:hover {
+      background: #d1d5db;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+      color: #384968;
+    }
+
+    @media (max-width: 500px) {
+      .center-box {
+        width: 90vw;
+        padding: 26px 16px;
+      }
+      .web-title {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="center-box">
+    <div class="web-title">FindMyThing</div>
+    <div class="actions">
+      <a href="{% url 'report_lost' %}">
+        <button class="lost-btn">Report Lost Item</button>
+      </a>
+      <a href="{% url 'report_found' %}">
+        <button class="found-btn">Report Found Item</button>
+      </a>
+    </div>
+  </div>
+</body>
+</html>
