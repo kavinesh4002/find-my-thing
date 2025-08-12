@@ -27,7 +27,12 @@ DEBUG = True
 
 import os
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost').split(',')
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
+
+# If ALLOWED_HOSTS env variable is empty, you can fallback to:
+if ALLOWED_HOSTS == ['']:
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'find-my-thing-3.onrender.com']
+
 
 # Application definition
 
